@@ -1,5 +1,7 @@
 from pymongo import MongoClient
-
+import os
+from dotenv import load_dotenv
+load_dotenv()
 
 class ClassMongoDB:
     client = None
@@ -11,7 +13,7 @@ class ClassMongoDB:
     @classmethod
     def connect_mongo_client(cls):
         # Establish a connection to the MongoDB server
-        cls.client = MongoClient('mongodb://localhost:27017')
+        cls.client = MongoClient(os.environ.get("MONGODB_HOST"))
 
     def get_database(self, db_name):
         # Select the particular database from MongoDB0
